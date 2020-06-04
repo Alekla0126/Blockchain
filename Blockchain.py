@@ -60,10 +60,11 @@ class Block_Chain(object):
         if((transmitter.Get_credit()-total) >= 0):
             receiver.Set_credit(receiver.Get_credit()+total)
             transmitter.Set_credit(transmitter.Get_credit()-total)
-            name = hashlib.sha256(transmitter.Get_name().encode('utf-8')+
-            receiver.Get_name().encode('utf-8')+str(random.randint(0,total)).encode('utf-8')).hexdigest()
+            id = hashlib.sha256(transmitter.Get_name().encode('utf-8')+
+            receiver.Get_name().encode('utf-8')+str(total).encode('utf-8')+
+            str(random.randint(0,total)).encode('utf-8')).hexdigest()
             n = Block()
-            n.Set_id(name)
+            n.Set_id(id)
             n.Set_total(total)
             transmitter.Set_chain(n)
             receiver.Set_chain(n)
